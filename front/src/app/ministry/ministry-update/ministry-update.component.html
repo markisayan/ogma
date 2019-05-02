@@ -1,0 +1,160 @@
+<mat-progress-bar *ngIf="!isDataLoaded || showLoader" mode="indeterminate"></mat-progress-bar>
+<div class="container" fxLayout="row" fxLayoutGap="0.5%" style="margin: 20px;" *ngIf="isDataLoaded">
+  <div fxFlex="70">
+    <form [formGroup]="updateForm" (ngSubmit)="updateForm.valid && onSubmit(updateForm)">
+      <mat-card>
+        <mat-card-header class="card-header">
+          <img (click)="onImageUpload()" mat-card-avatar class="avatar" [ngClass]="!logo ? 'almost-transparent' : ''" [src]="logo || 'assets/ministry.svg'">
+          <mat-card-title>Edit ministry</mat-card-title>
+          <mat-card-subtitle>ID: {{ministry.ministryId}}</mat-card-subtitle>
+          <div class="spacer"></div>
+          <button [routerLink]="['/ministries/view', ministry.ministryId]" mat-icon-button matTooltip="View" type="button">
+            <mat-icon>visibility</mat-icon>
+          </button>
+          <button mat-icon-button color="primary" matTooltip="Save" type="submit">
+            <mat-icon>save</mat-icon>
+          </button>
+          <button color="warn" type="button" mat-icon-button matTooltip="Delete">
+            <mat-icon (click)="onDelete()">delete</mat-icon>
+          </button>
+        </mat-card-header>
+        <mat-card-content style="margin: 20px">
+          <div fxLayout="column" fxLayoutGap="0.5%" fxLayoutAlign="space-between">
+            <mat-form-field flFlex>
+              <input
+                matInput
+                placeholder="Name"
+                type="text"
+                formControlName="name"
+                required>
+            </mat-form-field>
+
+            <mat-form-field flFlex>
+              <input matInput [matDatepicker]="openingDatePicker" placeholder="Opening Date"
+                     formControlName="openingDate"
+                     required>
+              <mat-datepicker-toggle matSuffix [for]="openingDatePicker"></mat-datepicker-toggle>
+              <mat-datepicker #openingDatePicker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field flFlex>
+              <input
+                matInput
+                placeholder="Phone"
+                type="text"
+                formControlName="phone"
+                required>
+            </mat-form-field>
+
+            <mat-form-field flFlex>
+              <input
+                matInput
+                placeholder="Email"
+                type="email"
+                formControlName="email"
+                required>
+            </mat-form-field>
+
+            <mat-form-field flFlex>
+              <input
+                matInput
+                placeholder="Website"
+                type="text"
+                formControlName="websiteUrl">
+            </mat-form-field>
+
+            <mat-form-field flFlex>
+              <input
+                matInput
+                placeholder="Ministry Head First Name"
+                type="text"
+                formControlName="headFirstName"
+                required>
+            </mat-form-field>
+
+            <mat-form-field flFlex>
+              <input
+                matInput
+                placeholder="Ministry Head Last Name"
+                type="email"
+                formControlName="headLastName"
+                required>
+            </mat-form-field>
+
+            <mat-form-field flFlex>
+              <input
+                matInput
+                placeholder="Ministry Manager First Name"
+                type="text"
+                formControlName="managerFirstName"
+                required>
+            </mat-form-field>
+
+            <mat-form-field flFlex>
+              <input
+                matInput
+                placeholder="Ministry Manager Last Name"
+                type="text"
+                formControlName="managerLastName"
+                required>
+            </mat-form-field>
+
+            <mat-form-field flFlex>
+              <input
+                matInput
+                placeholder="Address 1"
+                type="text"
+                formControlName="address1"
+                required>
+            </mat-form-field>
+
+            <mat-form-field flFlex>
+              <input
+                matInput
+                placeholder="Address 2"
+                type="text"
+                formControlName="address2">
+            </mat-form-field>
+
+            <mat-form-field flFlex>
+              <input
+                matInput
+                placeholder="City"
+                type="text"
+                formControlName="city"
+                required>
+            </mat-form-field>
+
+            <mat-form-field flFlex>
+              <input
+                matInput
+                placeholder="State"
+                type="text"
+                formControlName="state"
+                required>
+            </mat-form-field>
+
+            <mat-form-field flFlex>
+              <input
+                matInput
+                placeholder="Zip"
+                type="text"
+                formControlName="zip"
+                required>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-select placeholder="Country" formControlName="countryCode">
+                <mat-option *ngFor="let code of objectKeys(globalSettings.countryCodes)" [value]="code">
+                  {{globalSettings.countryCodes[code]}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </form>
+
+  </div>
+</div>

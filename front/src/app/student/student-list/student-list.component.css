@@ -1,0 +1,20 @@
+.card:hover {
+  cursor: pointer;
+  box-shadow: 2px 2px #bbb;
+}
+
+.fab {
+  top: auto !important;
+  right: 20px !important;
+  bottom: 20px !important;
+  left: auto !important;
+  position: fixed !important;
+}
+
+.container{
+  margin: 20px !important;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

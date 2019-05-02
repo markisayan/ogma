@@ -1,0 +1,153 @@
+<mat-progress-bar *ngIf="showLoader || !isDataLoaded" mode="indeterminate"></mat-progress-bar>
+<div class="container" fxLayout="row" fxLayoutGap="0.5%" style="margin: 20px;">
+  <div fxFlex="70">
+    <form [formGroup]="signupForm" (ngSubmit)="signupForm.valid && onSubmit(signupForm)">
+      <mat-card>
+        <mat-card-header class="card-header">
+          <mat-card-title>Add a new student</mat-card-title>
+          <div class="spacer"></div>
+          <button mat-icon-button color="primary" matTooltip="Save" type="submit">
+            <mat-icon>save</mat-icon>
+          </button>
+        </mat-card-header>
+        <mat-card-content style="margin: 20px">
+          <div fxLayout="column" fxLayoutGap="0.5%" fxLayoutAlign="space-between">
+            <mat-form-field>
+              <mat-select placeholder="Department" formControlName="departmentId" required>
+                <mat-option *ngFor="let department of allDepartments" [value]="department.departmentId">
+                  {{department['_displayName']}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field flFlex>
+              <input
+                matInput
+                placeholder="First Name"
+                type="text"
+                formControlName="firstName"
+                required>
+            </mat-form-field>
+
+            <mat-form-field flFlex>
+              <input
+                matInput
+                placeholder="Last Name"
+                type="text"
+                formControlName="lastName"
+                required>
+            </mat-form-field>
+
+            <mat-form-field flFlex>
+              <input matInput [matDatepicker]="birthDatePicker" placeholder="Birth Date"
+                     formControlName="birthDate" required>
+              <mat-datepicker-toggle matSuffix [for]="birthDatePicker"></mat-datepicker-toggle>
+              <mat-datepicker #birthDatePicker></mat-datepicker>
+            </mat-form-field>
+
+            <div>
+              <label style="margin-right: 20px">Photo:</label>
+              <button type="button" mat-button mat-raised-button color="primary" (click)="fileUpload.click()">
+                <mat-icon>attach_file</mat-icon>
+                Choose a photo...
+              </button>
+              <input name="input-file" id="input-file"
+                     type="file" accept="image/*"
+                     hidden
+                     #fileUpload
+                     (change)="handleFileInput($event.target.files)">
+            </div>
+
+            <mat-form-field flFlex>
+              <input matInput [matDatepicker]="enrollmentDate" placeholder="Enrollment Date"
+                     formControlName="enrollmentDate" required>
+              <mat-datepicker-toggle matSuffix [for]="enrollmentDate"></mat-datepicker-toggle>
+              <mat-datepicker #enrollmentDate></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field flFlex>
+              <input
+                matInput
+                placeholder="Group"
+                type="text"
+                formControlName="group"
+                required>
+            </mat-form-field>
+
+            <mat-form-field flFlex>
+              <input
+                matInput
+                placeholder="Phone"
+                type="text"
+                formControlName="phone"
+                required>
+            </mat-form-field>
+
+            <mat-form-field flFlex>
+              <input
+                matInput
+                placeholder="Email"
+                type="email"
+                formControlName="email"
+                required>
+            </mat-form-field>
+
+            <mat-form-field flFlex>
+              <input
+                matInput
+                placeholder="Address 1"
+                type="text"
+                formControlName="address1"
+                required >
+            </mat-form-field>
+
+            <mat-form-field flFlex>
+              <input
+                matInput
+                placeholder="Address 2"
+                type="text"
+                formControlName="address2">
+            </mat-form-field>
+
+            <mat-form-field flFlex>
+              <input
+                matInput
+                placeholder="City"
+                type="text"
+                formControlName="city"
+                required >
+            </mat-form-field>
+
+            <mat-form-field flFlex>
+              <input
+                matInput
+                placeholder="State"
+                type="text"
+                formControlName="state"
+                required >
+            </mat-form-field>
+
+            <mat-form-field flFlex>
+              <input
+                matInput
+                placeholder="Zip"
+                type="text"
+                formControlName="zip"
+                required >
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-select placeholder="Country" formControlName="countryCode" [value]="AFG" required>
+                <mat-option *ngFor="let code of objectKeys(globalSettings.countryCodes)" [value]="code">
+                  {{globalSettings.countryCodes[code]}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </form>
+
+  </div>
+</div>

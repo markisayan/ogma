@@ -1,0 +1,55 @@
+namespace org.ogma.academic
+
+import org.ogma.participant.*
+import org.ogma.concept.Address
+
+asset Student identified by studentId {
+  o String studentId
+  o DateTime birthDate
+  o DateTime enrollmentDate
+  o String photo
+  o String group
+  o String email
+  o String phone
+  o String firstName
+  o String lastName
+  o Address address
+  
+  --> Department department
+}
+
+asset Course identified by courseId {
+  o String courseId
+  o String name
+  o DateTime startDate
+  o Integer credits
+  
+  --> Professor professor
+}
+
+asset Assignment identified by assignmentId {
+  o String assignmentId
+  o String name
+  o String gradeRequired
+  --> Course course
+}
+
+asset StudentCourse identified by studentCourseId {
+  o String studentCourseId
+  
+  o String finalGrade		optional
+  
+  --> Student student
+  --> Course course
+}
+
+asset StudentAssignment identified by studentAssignmentId {
+  o String studentAssignmentId
+  
+  o String grade
+  o Boolean passed 				default=true
+  o String additionalFiles		optional
+  
+  --> Student student
+  --> Assignment assignment
+}

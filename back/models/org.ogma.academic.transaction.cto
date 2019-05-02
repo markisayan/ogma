@@ -1,0 +1,112 @@
+namespace org.ogma.academic.transaction
+
+import org.ogma.academic.*
+import org.ogma.participant.*
+  
+
+transaction Transfer {
+  --> Student student
+  --> Department newDepartment
+}
+
+transaction CreateStudent {
+  --> Department department
+  
+  // Student data
+  o String 		firstName
+  o String 		lastName
+  o DateTime 	birthDate
+  o DateTime 	enrollmentDate
+  o String 		photo
+  o String 		group
+  o String 		email
+  o String 		phone
+  
+  // Address data
+  o String 		address1
+  o String 		address2 		optional
+  o String 		state
+  o String 		city
+  o String 		countryCode
+  o String 		zip
+}  
+
+transaction UpdateStudent {
+  --> Student student
+  
+  // Student data
+  o String 		firstName
+  o String 		lastName
+  o DateTime 	birthDate
+  o DateTime 	enrollmentDate
+  o String 		photo
+  o String 		group
+  o String 		email
+  o String 		phone
+  
+  // Address data
+  o String 		address1
+  o String 		address2 		optional
+  o String 		state
+  o String 		city
+  o String 		countryCode
+  o String 		zip
+}  
+
+transaction CreateCourse {
+  o String 		name
+  o DateTime 	startDate
+  o Integer 	credits
+  
+  --> Professor professor
+}
+
+transaction UpdateCourse {
+  o String 		name
+  o DateTime 	startDate
+  o Integer 	credits
+  
+  --> Course 	course	
+}
+
+transaction CreateAssignment {
+  o String 		name
+  o String 		gradeRequired
+  
+  --> Course 	course
+}
+
+transaction UpdateAssignment {
+  o String 		name
+  o String 		gradeRequired
+  
+  --> Assignment 	assignment	
+}
+
+transaction CreateStudentCourse {  
+  --> Student 		student
+  --> Course 		course
+}
+
+transaction UpdateStudentCourse {
+  o String 			finalGrade
+  
+  --> StudentCourse studentCourse
+}
+
+transaction CreateStudentAssignment {
+  o String 			grade
+  o Boolean 		passed 					default=true
+  o String 			additionalFiles			optional
+  
+  --> Student 		student
+  --> Assignment 	assignment
+}
+
+transaction UpdateStudentAssignment {
+  o String 			grade
+  o Boolean 		passed 					default=true
+  o String 			additionalFiles			optional
+  
+  --> StudentAssignment studentAssignment
+}

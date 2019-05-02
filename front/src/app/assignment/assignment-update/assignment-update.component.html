@@ -1,0 +1,105 @@
+<mat-progress-bar *ngIf="showLoader || !isDataLoaded" mode="indeterminate"></mat-progress-bar>
+<div class="container" fxLayout="row" fxLayoutGap="1%" style="margin: 20px;" *ngIf="isDataLoaded">
+  <div fxFlex="90" fxLayoutAlign="space-evenly">
+    <form fxFlex="65" [formGroup]="updateForm" (ngSubmit)="updateForm.valid && onSubmit(updateForm)">
+      <mat-card>
+        <mat-card-header class="card-header">
+          <img mat-card-avatar [ngClass]="!photo ? 'almost-transparent' : ''" [src]="photo || 'assets/assignment.svg'">
+
+          <mat-card-title>Edit assignment</mat-card-title>
+          <div class="spacer"></div>
+          <button [routerLink]="['/assignments/view', assignment.assignmentId]" mat-icon-button matTooltip="View"
+                  type="button">
+            <mat-icon>visibility</mat-icon>
+          </button>
+          <button mat-icon-button color="primary" matTooltip="Save" type="submit">
+            <mat-icon>save</mat-icon>
+          </button>
+          <button color="warn" type="button" mat-icon-button matTooltip="Delete">
+            <mat-icon (click)="onDelete()">delete</mat-icon>
+          </button>
+        </mat-card-header>
+        <mat-card-content style="margin: 20px">
+          <div fxLayout="column" fxLayoutGap="0.5%" fxLayoutAlign="space-between">
+            <mat-form-field flFlex>
+              <input
+                matInput
+                placeholder="Name"
+                type="text"
+                formControlName="name"
+                required>
+            </mat-form-field>
+
+            <mat-form-field flFlex>
+              <input
+                matInput
+                placeholder="Grade required to pass"
+                type="text"
+                formControlName="gradeRequired"
+                required>
+            </mat-form-field>
+
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </form>
+
+    <div fxFlex="30">
+      <mat-card>
+        <mat-card-header class="card-header">
+          <mat-card-title>Assign assignment to students</mat-card-title>
+        </mat-card-header>
+        <mat-card-content style="margin: 20px">
+          <mat-accordion>
+            <mat-expansion-panel *ngFor="let department of departmentsTree">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{department.name}}
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <mat-accordion>
+                <mat-expansion-panel *ngFor="let student of department.students">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      {{student.name}}
+                    </mat-panel-title>
+                    <mat-panel-description style="flex-grow: 0">
+                      {{student.studentAssignment ? "Assigned" : "No assigned"}}
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+
+                  <mat-form-field>
+                    <input
+                      matInput
+                      placeholder="Grade"
+                      type="text"
+                      [ngModel]="student.studentAssignment ? student.studentAssignment.grade : ''"
+                      #grade
+                      required>
+                  </mat-form-field>
+
+                  <section>
+                    <mat-slide-toggle [checked]="student.studentAssignment ? student.studentAssignment.passed : false"
+                                      #passed>Passed
+                    </mat-slide-toggle>
+                  </section>
+
+                  <mat-action-row>
+                    <button mat-button color="warn" [disabled]="!student.studentAssignment"
+                            (click)="deleteStudentAssignment(student)">Delete
+                    </button>
+                    <button mat-button color="primary"
+                            (click)="commitStudentAssignment(student, grade.value, passed.checked, student.studentAssignment)">
+                      Save
+                    </button>
+                  </mat-action-row>
+
+                </mat-expansion-panel>
+              </mat-accordion>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

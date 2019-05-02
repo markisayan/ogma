@@ -1,0 +1,4 @@
+.break-apart{
+  display: flex;
+  flex-direction: column;
+}

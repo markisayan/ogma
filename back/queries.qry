@@ -1,0 +1,10 @@
+/**
+ * New query file
+ */
+
+query selectStudentsByDepartment {
+  description: "Get all student from department"
+  statement:
+      SELECT org.ogma.academic.Student
+          WHERE (department.departmentId==_$departmentId)
+}

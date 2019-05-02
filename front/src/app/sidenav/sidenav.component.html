@@ -1,0 +1,31 @@
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer
+    mode="side"
+    class="drawer"
+    opened="true"
+    disableClose="true"
+    [class.menu-open]="showSidenav"
+    [class.menu-close]="!showSidenav">
+    <mat-nav-list>
+      <a mat-list-item class="list-item" (click)="showSidenav = !showSidenav">
+        <div *ngIf="showSidenav">Ogma</div>
+        <mat-icon [class.menu-open-menu-icon]="showSidenav">menu</mat-icon>
+      </a>
+      <mat-divider></mat-divider>
+      <a mat-list-item class="list-item" [matTooltip]="menuItem.name" *ngFor="let menuItem of menuItems" [routerLink]=menuItem.location>
+        <mat-icon style="margin-right: 10px">{{menuItem.icon}}</mat-icon>
+        <span *ngIf="showSidenav">{{menuItem.name}}</span>
+      </a>
+    </mat-nav-list>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <app-navbar></app-navbar>
+    <ng-content></ng-content>
+  </mat-drawer-content>
+
+</mat-drawer-container>
+
+
+
+

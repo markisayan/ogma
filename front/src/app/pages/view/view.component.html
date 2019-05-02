@@ -1,0 +1,30 @@
+<mat-progress-bar *ngIf="!isDataLoaded" mode="indeterminate"></mat-progress-bar>
+<div class="container" fxLayout="row" fxLayoutAlign="center" fxLayoutGap="0.5%" style="margin: 20px;" *ngIf="isDataLoaded">
+  <div fxFlex="60">
+    <mat-card>
+      <mat-card-header>
+        <div class="spacer"></div>
+        <button mat-icon-button [routerLink]="[editLink, id]" matTooltip="Edit {{what}} info"><mat-icon>edit</mat-icon></button>
+      </mat-card-header>
+      <mat-card-content style="margin: 20px" fxLayoutGap="0.5%">
+        <div fxLayout="row">
+          <div fxFlex="35">
+            <img [ngClass]="!image ? 'almost-transparent' : ''" src="{{image || 'assets/' + what + '.svg'}}" style="width: 300px">
+          </div>
+          <div fxFlex="75">
+            <h1 class="fullname">{{title}}</h1>
+            <mat-divider></mat-divider>
+            <table>
+              <tr *ngFor="let item of displayFields">
+                <td><b class="fatter mat-caption">{{item.name | uppercase}}</b></td>
+                <td *ngIf="!item.link && !item.routerLink"><p class="gray">{{item.value}}</p></td>
+                <td *ngIf="item.link && !item.routerLink"><a class="gray" href="{{item.link}}" target="_blank">{{item.value}}</a></td>
+                <td *ngIf="item.routerLink"><a class="gray" [routerLink]="item.routerLink">{{item.value}}</a></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+namespace org.ogma.concept
+
+concept Address {
+  o String address1
+  o String address2 optional
+  o String state
+  o String city
+  o String countryCode
+  o String zip
+}

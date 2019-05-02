@@ -1,0 +1,79 @@
+rule NetworkAdminUser {
+    description: "Grant business network administrators full access to user resources"
+    participant: "org.hyperledger.composer.system.NetworkAdmin"
+    operation: ALL
+    resource: "**"
+    action: ALLOW
+}
+
+rule NetworkAdminSystem {
+    description: "Grant business network administrators full access to system resources"
+    participant: "org.hyperledger.composer.system.NetworkAdmin"
+    operation: ALL
+    resource: "org.hyperledger.composer.system.**"
+    action: ALLOW
+}
+
+rule MinistryCanCRUDUniversity {
+  description: "Give Ministry an ability to perform CRUD operations on University"
+  participant: "org.ogma.participant.Ministry"
+  operation: ALL
+  resource: "org.ogma.participant.University"
+  action: ALLOW
+}
+
+rule UniversityCanCRUDDepartment {
+  description: "Give University an ability to perform CRUD operations on Department"
+  participant: "org.ogma.participant.University"
+  operation: ALL
+  resource: "org.ogma.participant.Department"
+  action: ALLOW
+}
+
+rule UniversityCanCRUDProfessor {
+  description: "Give University an ability to perform CRUD operations on Professor"
+  participant: "org.ogma.participant.University"
+  operation: ALL
+  resource: "org.ogma.participant.Professor"
+  action: ALLOW
+}
+
+rule DepartmentCanCRUDStudent {
+  description: "Give Department an ability to perform CRUD operations on Student"
+  participant: "org.ogma.participant.Department"
+  operation: ALL
+  resource: "org.ogma.academic.Student"
+  action: ALLOW
+}
+
+rule DepartmentCanCRUDCourse {
+  description: "Give Department an ability to perform CRUD operations on Course"
+  participant: "org.ogma.participant.Department"
+  operation: ALL
+  resource: "org.ogma.academic.Course"
+  action: ALLOW
+}
+
+rule DepartmentCanCRUDStudentCourse {
+  description: "Give Department an ability to perform CRUD operations on StudentCourse"
+  participant: "org.ogma.participant.Department"
+  operation: ALL
+  resource: "org.ogma.academic.StudentCourse"
+  action: ALLOW
+}
+
+rule ProfessorCanCRUDAssignment {
+  description: "Give Professor an ability to perform CRUD operations on Assignment"
+  participant: "org.ogma.participant.Professor"
+  operation: ALL
+  resource: "org.ogma.academic.Assignment"
+  action: ALLOW
+}
+
+rule ProfessorCanCRUDStudentAssignment {
+  description: "Give Professor an ability to perform CRUD operations on StudentAssignment"
+  participant: "org.ogma.participant.Professor"
+  operation: ALL
+  resource: "org.ogma.academic.StudentAssignment"
+  action: ALLOW
+}

@@ -1,0 +1,44 @@
+namespace org.ogma.participant
+
+import org.ogma.concept.Address
+  
+abstract participant PhysicalEntity {
+  o Address 		address
+  o String 			phone
+  o String 			email
+}
+
+abstract participant AcademicOrganisationEnitity extends PhysicalEntity {
+  o String 			name
+  o String 			logo optional
+  o String 			websiteUrl optional
+  o DateTime 		openingDate
+  o String 			headFirstName
+  o String 			headLastName
+  o String 			managerFirstName
+  o String 			managerLastName
+}
+
+participant Professor identified by professorId extends PhysicalEntity {
+  o String 			professorId
+  o String 			firstName
+  o String 			lastName
+  o String			photo		optional
+  o DateTime 		birthDate
+  
+  --> University	university
+}
+
+participant Ministry identified by ministryId extends AcademicOrganisationEnitity {
+  o String 			ministryId
+}
+
+participant University identified by universityId extends AcademicOrganisationEnitity {
+  o String 			universityId
+  --> Ministry 		ministry
+}
+
+participant Department identified by departmentId extends AcademicOrganisationEnitity {
+  o String 			departmentId
+  --> University 	university
+}

@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Proceed?</h1>
+
+<div mat-dialog-content>
+  <p style="font-family: Roboto,\'Helvetica Neue\',sans-serif">Are you sure you want to {{data.action}} {{data.subject}}?</p>
+</div>
+
+<div mat-dialog-actions>
+  <button (click)="onCancel()" mat-raised-button color="primary">Cancel</button>
+  <button mat-raised-button (click)="onProceed()" cdkFocusInitial color="warn">{{data.action.toUpperCase()}}</button>
+</div>

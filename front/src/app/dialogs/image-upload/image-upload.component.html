@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>View image</h1>
+
+<div mat-dialog-content>
+  <img width="250" src="{{uploadedData || data.image}}">
+
+  <input id="file"
+         hidden
+         #file
+         type="file" accept="image/*"
+         (change)="handleFileInput($event.target.files)">
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onClose()" >Close</button>
+  <button mat-button mat-raised-button color="primary" (click)="file.click()">Upload</button>
+  <button mat-button mat-raised-button color="warn" (click)="onDelete()">Delete</button>
+</div>

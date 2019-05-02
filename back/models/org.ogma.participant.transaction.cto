@@ -1,0 +1,189 @@
+namespace org.ogma.participant.transaction
+
+import org.ogma.participant.*
+import org.ogma.concept.*
+  
+transaction CreateProfessor {
+  --> University university
+  
+  // Professor data
+  o String 		firstName
+  o String 		lastName
+  o String 		photo			optional
+  o DateTime 	birthDate
+  
+  o String 		phone
+  o String 		email
+  
+  // Address data
+  o String 		address1
+  o String 		address2 		optional
+  o String 		state
+  o String 		city
+  o String 		countryCode
+  o String 		zip
+}  
+
+transaction UpdateProfessor {
+  --> Professor professor
+  
+  // Professor data
+  o String 		firstName
+  o String 		lastName
+  o String 		photo			optional
+  o DateTime 	birthDate
+  
+  o String 		phone
+  o String 		email
+  
+  // Address data
+  o String 		address1
+  o String 		address2 		optional
+  o String 		state
+  o String 		city
+  o String 		countryCode
+  o String 		zip
+}  
+  
+transaction CreateMinistry {
+  // Ministry data
+  o String 		name
+  o String 		logo 			optional
+  o String 		phone
+  o String		photo			optional
+  o String 		email
+  o String 		websiteUrl 		optional
+  o DateTime 	openingDate
+  o String 		headFirstName
+  o String 		headLastName
+  o String 		managerFirstName
+  o String 		managerLastName
+  
+  // Address data
+  o String 		address1
+  o String 		address2 		optional
+  o String 		state
+  o String 		city
+  o String 		countryCode
+  o String 		zip
+}  
+
+transaction UpdateMinistry {
+  --> Ministry ministry
+  
+  // Ministry data
+  o String 		name
+  o String 		logo 			optional
+  o String 		phone
+  o String 		email
+  o String 		websiteUrl 		optional
+  o DateTime 	openingDate
+  o String 		headFirstName
+  o String 		headLastName
+  o String 		managerFirstName
+  o String 		managerLastName
+  
+  // Address data
+  o String 		address1
+  o String 		address2 		optional
+  o String 		state
+  o String 		city
+  o String 		countryCode
+  o String 		zip
+}  
+  
+transaction CreateUniversity {
+  --> Ministry ministry
+  
+  // University data
+  o String 		name
+  o String 		logo 			optional
+  o String 		phone
+  o String 		email
+  o String 		websiteUrl 		optional
+  o DateTime 	openingDate
+  o String 		headFirstName
+  o String 		headLastName
+  o String 		managerFirstName
+  o String 		managerLastName
+  
+  // Address data
+  o String 		address1
+  o String 		address2 		optional
+  o String 		state
+  o String 		city
+  o String 		countryCode
+  o String 		zip
+}  
+
+transaction UpdateUniversity {
+  --> University university
+  
+  // University data
+  o String 		name
+  o String 		logo 			optional
+  o String 		phone
+  o String 		email
+  o String 		websiteUrl 		optional
+  o DateTime 	openingDate
+  o String 		headFirstName
+  o String 		headLastName
+  o String 		managerFirstName
+  o String 		managerLastName
+  
+  // Address data
+  o String 		address1
+  o String 		address2 		optional
+  o String 		state
+  o String 		city
+  o String 		countryCode
+  o String 		zip
+}
+  
+transaction CreateDepartment {
+  --> University university
+ 
+  // Department data
+  o String 		name
+  o String 		logo 			optional
+  o String 		phone
+  o String 		email
+  o String 		websiteUrl 		optional
+  o DateTime 	openingDate
+  o String 		headFirstName
+  o String 		headLastName
+  o String 		managerFirstName
+  o String 		managerLastName
+  
+  // Address data
+  o String 		address1
+  o String 		address2 		optional
+  o String 		state
+  o String 		city
+  o String 		countryCode
+  o String 		zip
+}  
+
+transaction UpdateDepartment {
+  --> Department department
+  
+  // Department data
+  o String 		name
+  o String 		logo 			optional
+  o String 		phone
+  o String 		email
+  o String 		websiteUrl 		optional
+  o DateTime 	openingDate
+  o String 		headFirstName
+  o String 		headLastName
+  o String 		managerFirstName
+  o String 		managerLastName
+  
+  // Address data
+  o String 		address1
+  o String 		address2 		optional
+  o String 		state
+  o String 		city
+  o String 		countryCode
+  o String 		zip
+}

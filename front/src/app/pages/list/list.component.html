@@ -1,0 +1,17 @@
+<mat-progress-bar *ngIf="!isDataLoaded" mode="indeterminate"></mat-progress-bar>
+<div class="container" fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="1% grid" *ngIf="isDataLoaded">
+  <div fxFlex="33" fxFlex.lt-md="100" *ngFor="let item of items" >
+    <mat-card class="card">
+      <mat-card-header>
+        <img [ngClass]="!item.image ? 'almost-transparent' : ''" mat-card-avatar src="{{item.image || 'assets/' + what + '.svg'}}">
+        <mat-card-title>{{item.title}}</mat-card-title>
+        <mat-card-subtitle>{{item.subtitle}}</mat-card-subtitle>
+        <div class="spacer"></div>
+        <button mat-icon-button matTooltip="View {{what}}" [routerLink]="[viewLink, item.id]"><mat-icon>visibility</mat-icon></button>
+        <button mat-icon-button matTooltip="Edit {{what}}" [routerLink]="[editLink, item.id]"><mat-icon>edit</mat-icon></button>
+      </mat-card-header>
+    </mat-card>
+  </div>
+</div>
+
+<button class="fab" mat-fab color="accent" [routerLink]="[addLink]" matTooltip="Add {{what}}"><mat-icon>add</mat-icon></button>

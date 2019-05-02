@@ -1,0 +1,82 @@
+<mat-progress-bar *ngIf="showLoader || !isDataLoaded" mode="indeterminate"></mat-progress-bar>
+<div class="container" fxLayout="row" fxLayoutAlign="center" fxLayoutGap="0.5%" style="margin: 20px;" *ngIf="isDataLoaded">
+  <div fxFlex="60">
+    <mat-card>
+      <mat-card-header>
+        <div class="spacer"></div>
+        <button mat-icon-button [routerLink]="['/students/edit', student.studentId]" matTooltip="Edit student info"><mat-icon>edit</mat-icon></button>
+      </mat-card-header>
+      <mat-card-content style="margin: 20px" fxLayoutGap="0.5%">
+        <div fxLayout="row">
+          <div fxFlex="35">
+            <img src="{{student.photo}}">
+          </div>
+          <div fxFlex="65">
+            <h1 class="fullname">{{student.firstName + ' ' + student.lastName}}</h1>
+            <mat-divider></mat-divider>
+            <p>Personal info:</p>
+            <table>
+              <tr>
+                <td><b class="fatter mat-caption">{{'Birth date' | uppercase}}</b></td>
+                <td><p class="gray">{{student.birthDate | date}}</p></td>
+              </tr>
+              <tr>
+                <td><b class="fatter mat-caption">{{'Email' | uppercase}}</b></td>
+                <td><p class="gray">{{student.email}}</p></td>
+              </tr>
+              <tr>
+                <td><b class="fatter mat-caption">{{'Phone' | uppercase}}</b></td>
+                <td><p class="gray">{{student.phone}}</p></td>
+              </tr>
+              <tr>
+                <td><b class="fatter mat-caption">{{'Address' | uppercase}}</b></td>
+                <td><p class="gray">{{[student.address.address1, student.address.address2, student.address.city, student.address.state, (student.address.countryCode)].join(', ')}}</p></td>
+              </tr>
+            </table>
+            <p>Academic info:</p>
+            <table>
+              <tr>
+                <td><b class="fatter mat-caption">{{'University' | uppercase}}</b></td>
+                <td><a class="gray" [routerLink]="['/universities/view',student.department.university.universityId]">{{student.department.university.name}}</a></td>
+              </tr>
+              <tr>
+                <td><b class="fatter mat-caption">{{'Department' | uppercase}}</b></td>
+                <td><a class="gray" [routerLink]="['/departments/view',student.department.departmentId]">{{student.department.name}}</a></td>
+              </tr>
+              <tr>
+                <td><b class="fatter mat-caption">{{'Enrolled on' | uppercase}}</b></td>
+                <td><p class="gray">{{student.enrollmentDate | date}}</p></td>
+              </tr>
+            </table>
+
+            <p>Acedemic progress:</p>
+            <table>
+              <tr>
+                <td>Courses:</td>
+              </tr>
+              <tr *ngFor="let course of courses">
+                <td>
+                  <div class="with-icon" style="margin-left: 10px">
+                    <mat-icon matTooltip="{{course.finalGrade ? 'completed' : 'in progress'}}" style="margin-right: 1em;">{{course.finalGrade ? 'check' : 'sync'}}
+                    </mat-icon>{{course.course.name}} {{course.finalGrade ? '(' + course.finalGrade + ')' : ''}}
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Assignments:</td>
+              </tr>
+              <tr *ngFor="let assignment of assignments">
+                <td>
+                  <div class="with-icon" style="margin-left: 10px">
+                    <mat-icon matTooltip="{{assignment.passed ? 'passed' : 'failed'}}" style="margin-right: 1em;">{{assignment.passed ? 'check' : 'clear'}}
+                    </mat-icon>[{{ assignment.assignment.course.name }}] {{assignment.assignment.name}} ({{assignment.grade}})
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

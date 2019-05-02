@@ -1,0 +1,40 @@
+<mat-toolbar style="background-color: white">
+  <mat-toolbar-row>
+    <span style="font-size: 15px">{{title}}</span>
+    <span class="spacer"></span>
+    <ng-template [ngIf]="isLoggedIn">
+      <button mat-icon-button>
+        <mat-icon matBadge="15" matBadgeColor="warn">notifications</mat-icon>
+      </button>
+      <button mat-button><span style="margin-right:10px;">Mark Isayan</span> <img style="border-radius: 50px" src="https://api.adorable.io/avatars/10/abott@adorable"> </button>
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>person</mat-icon>
+          <span>Profile</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>settings</mat-icon>
+          <span>Settings</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Log out</span>
+        </button>
+      </mat-menu>
+    </ng-template>
+    <ng-template [ngIf]="!isLoggedIn">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="openDialog()">
+          <mat-icon>person</mat-icon>
+          <span>Log in</span>
+        </button>
+      </mat-menu>
+    </ng-template>
+  </mat-toolbar-row>
+</mat-toolbar>
