@@ -3,7 +3,6 @@ import {Department, Professor, University} from '../../org.ogma.participant';
 import {MatSnackBar} from '@angular/material';
 import {GlobalSettingsService} from '../../global-settings.service';
 import {CountryPipe} from '../../country.pipe';
-import {DepartmentService} from '../department.service';
 import {ProfessorService} from '../professor.service';
 
 @Component({

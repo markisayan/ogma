@@ -56,7 +56,8 @@ export class AssignmentUpdateComponent implements OnInit {
       .then(() => {
         this.formData = {
           name: new FormControl(this.assignment.name),
-          gradeRequired: new FormControl(this.assignment.gradeRequired)
+          gradeRequired: new FormControl(this.assignment.gradeRequired),
+          date: new FormControl(this.assignment.date)
         };
         this.updateForm = this.fb.group(this.formData);
         this.isDataLoaded = true;
@@ -77,7 +78,7 @@ export class AssignmentUpdateComponent implements OnInit {
         ]);
       })
       .then(([students, studentAssignments]) => {
-        students.forEach(student => {
+        (students as Array<Student>).forEach(student => {
           if (!this.departmentsTree.find(department => department.id === student.department.departmentId)) {
             this.departmentsTree.push({
               name: student.department.name + ' (' + student.department.university.name + ')',
@@ -93,7 +94,7 @@ export class AssignmentUpdateComponent implements OnInit {
             this.departmentsTree[deptIndex].students.push({
               name: student.firstName + ' ' + student.lastName,
               id: student.studentId,
-              studentAssignment: studentAssignments.find(s => s.student.studentId === student.studentId)
+              studentAssignment: (studentAssignments as Array<StudentAssignment>).find(s => s.student.studentId === student.studentId)
             });
           }
         });
@@ -106,6 +107,7 @@ export class AssignmentUpdateComponent implements OnInit {
       $class: 'org.ogma.academic.transaction.UpdateAssignment',
       assignment: 'resource:org.ogma.academic.Assignment#' + this.id,
       name: this.formData.name.value,
+      date: this.formData.date.value,
       gradeRequired: this.formData.gradeRequired.value
     };
 

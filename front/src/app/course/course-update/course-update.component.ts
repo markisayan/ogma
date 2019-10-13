@@ -6,7 +6,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {WarningComponent} from '../../dialogs/warning/warning.component';
 import {ImageUploadComponent} from '../../dialogs/image-upload/image-upload.component';
 import {Title} from '@angular/platform-browser';
-import {Course, StudentAssignment, StudentCourse} from '../../org.ogma.academic';
+import {Course, Student, StudentAssignment, StudentCourse} from '../../org.ogma.academic';
 import {CourseService} from '../course.service';
 import {StudentService} from '../../student/student.service';
 
@@ -80,7 +80,7 @@ export class CourseUpdateComponent implements OnInit {
         ]);
       })
       .then(([students, studentCourses]) => {
-        students.forEach(student => {
+        (students as Array<Student>).forEach(student => {
           if (!this.departmentsTree.find(department => department.id === student.department.departmentId)) {
             this.departmentsTree.push({
               name: student.department.name + ' (' + student.department.university.name + ')',
@@ -95,7 +95,7 @@ export class CourseUpdateComponent implements OnInit {
             this.departmentsTree[deptIndex].students.push({
               name: student.firstName + ' ' + student.lastName,
               id: student.studentId,
-              studentCourse: studentCourses.find(s => s.student.studentId === student.studentId)
+              studentCourse: (studentCourses as Array<StudentCourse>).find(s => s.student.studentId === student.studentId)
             });
           }
         });

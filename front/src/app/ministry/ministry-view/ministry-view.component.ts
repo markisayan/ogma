@@ -14,18 +14,18 @@ import {CountryPipe} from '../../country.pipe';
   styleUrls: ['./ministry-view.component.css']
 })
 export class MinistryViewComponent implements OnInit {
-
   private viewComponentData: {
-    title: string,
-    editLink: string,
-    id: string,
-    image: string,
-    isDataLoaded: boolean,
-    what: string,
-    displayFields: Array<{
+    title?: string,
+    editLink?: string,
+    id?: string,
+    image?: string,
+    isDataLoaded?: boolean,
+    what?: string,
+    displayFields?: Array<{
       name: string,
       value: string,
-      link?: string
+      link?: string,
+      routerLink?: Array<string>
     }>
   };
   constructor(private snackBar: MatSnackBar,

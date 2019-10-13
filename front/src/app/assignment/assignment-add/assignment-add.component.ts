@@ -30,6 +30,7 @@ export class AssignmentAddComponent implements OnInit {
     this.formData = {
       courseId: new FormControl(null),
       name: new FormControl(null),
+      date: new FormControl(null),
       gradeRequired: new FormControl(null),
     };
 
@@ -48,6 +49,7 @@ export class AssignmentAddComponent implements OnInit {
       $class: 'org.ogma.academic.transaction.CreateAssignment',
       course: 'resource:org.ogma.academic.Course#' + this.formData.courseId.value,
       name: this.formData.name.value,
+      date: this.formData.date.value,
       gradeRequired: this.formData.gradeRequired.value,
     };
 

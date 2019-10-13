@@ -1,6 +1,8 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
+
+
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 
@@ -58,6 +60,7 @@ import {StudentService} from './student/student.service';
 import {ProfessorService} from './professor/professor.service';
 import {CourseService} from './course/course.service';
 import {AssignmentService} from './assignment/assignment.service';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -110,7 +113,8 @@ import {AssignmentService} from './assignment/assignment.service';
     ReactiveFormsModule,
     FlexLayoutModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ChartsModule
   ],
   providers: [
     DataService,

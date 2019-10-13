@@ -33,6 +33,7 @@ export class Assignment extends Asset {
   name: string;
   gradeRequired: string;
   course: Course;
+  date: Date;
 }
 
 export class StudentCourse extends Asset {

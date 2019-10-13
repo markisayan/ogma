@@ -19,13 +19,13 @@ import {AssignmentService} from '../assignment.service';
 })
 export class AssignmentViewComponent implements OnInit {
   private viewComponentData: {
-    title: string,
-    editLink: string,
-    id: string,
-    image: string,
-    isDataLoaded: boolean,
-    what: string,
-    displayFields: Array<{
+    title?: string,
+    editLink?: string,
+    id?: string,
+    image?: string,
+    isDataLoaded?: boolean,
+    what?: string,
+    displayFields?: Array<{
       name: string,
       value: string,
       link?: string,
@@ -61,6 +61,7 @@ export class AssignmentViewComponent implements OnInit {
       .then((assignment: Assignment) => {
         this.viewComponentData.title = assignment.name;
         this.viewComponentData.displayFields = [
+          {name: 'date', value: this.datePipe.transform(assignment.date)},
           {name: 'grade required', value: assignment.gradeRequired.toString()},
           {name: 'course', value: assignment.course.name, routerLink: ['/courses/view', assignment.course.courseId]}
         ];

@@ -74,6 +74,16 @@
                 </td>
               </tr>
             </table>
+
+            <p>Knowledge graph by average grade</p>
+            <canvas style="margin-top: 50px" baseChart
+                    [datasets]="chartData.data"
+                    [labels]="chartData.labels"
+                    [options]="chartData.options"
+                    [plugins]="chartData.plugins"
+                    [legend]="chartData.legend"
+                    [chartType]="chartData.type">
+            </canvas>
           </div>
         </div>
       </mat-card-content>

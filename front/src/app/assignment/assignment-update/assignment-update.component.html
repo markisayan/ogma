@@ -31,6 +31,13 @@
             </mat-form-field>
 
             <mat-form-field flFlex>
+              <input matInput [matDatepicker]="datePicker" placeholder="Date"
+                     formControlName="date" required>
+              <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+              <mat-datepicker #datePicker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field flFlex>
               <input
                 matInput
                 placeholder="Grade required to pass"

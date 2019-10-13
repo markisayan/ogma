@@ -16,13 +16,13 @@ import {ProfessorService} from '../professor.service';
 })
 export class ProfessorViewComponent implements OnInit {
   private viewComponentData: {
-    title: string,
-    editLink: string,
-    id: string,
-    image: string,
-    isDataLoaded: boolean,
-    what: string,
-    displayFields: Array<{
+    title?: string,
+    editLink?: string,
+    id?: string,
+    image?: string,
+    isDataLoaded?: boolean,
+    what?: string,
+    displayFields?: Array<{
       name: string,
       value: string,
       link?: string,
